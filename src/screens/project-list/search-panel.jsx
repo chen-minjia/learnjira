@@ -1,9 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 
-export const SearchPanel = ({ param, setParam }) => {
-  const [users, setUsers] = useState([]);// users 为负责人列表
-
+export const SearchPanel = ({ users, param, setParam }) => {
   return <form>
     <div>
       {/* setParam(Object.assign({},param,{name:evt.target.value})) */}
@@ -18,7 +16,7 @@ export const SearchPanel = ({ param, setParam }) => {
         <option value="">负责人</option>
         {
           // 这里可能有一点问题
-          users.map(user => <option value={user.id}>{user.name}</option>)
+          users.map(user => <option key={user.id} value={user.id}>{user.name}</option>)
         }
       </select>
     </div>

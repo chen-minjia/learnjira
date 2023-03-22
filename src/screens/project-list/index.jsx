@@ -3,9 +3,9 @@ import qs from "qs";
 import { useState, useEffect } from "react";
 import { SearchPanel } from "./search-panel"
 import { List } from "./list"
-import { cleanObject } from "utils";
+import { cleanObject, useMount } from "utils";
 
-// process.env动态获取环境变量 
+// process.env 动态获取环境变量 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const ProjectListScreen = () => {
@@ -28,13 +28,22 @@ export const ProjectListScreen = () => {
   }, [param])
 
   // 初始化 users，依赖空数组，只需要在页面渲染时触发一次
-  useEffect(() => {
+  // useEffect(() => {
+  //   fetch(`${apiUrl}/users`).then(async response => {
+  //     if (response.ok) {
+  //       setUsers(await response.json());
+  //     }
+  //   })
+  // }, [])
+
+  // 代码同上，防重复。
+  useMount(() => {
     fetch(`${apiUrl}/users`).then(async response => {
       if (response.ok) {
         setUsers(await response.json());
       }
     })
-  }, [])
+  });
 
   return (
     <div>

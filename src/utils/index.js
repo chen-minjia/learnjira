@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export const isFalse = (val) => val === 0 ? false : !val; // !! 表示把一个值转换为布尔值
 // 用来处理空值的函数
 export const cleanObject = (obj) => {
@@ -11,4 +13,11 @@ export const cleanObject = (obj) => {
     }
   })
   return result;
+}
+
+// 组件只在挂载时渲染
+export const useMount = (callback) => {
+  useEffect(() => {
+    callback();
+  }, [])
 }

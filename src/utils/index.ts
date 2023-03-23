@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const isFalse = (val: any) => val === 0 ? false : !val; // !! 表示把一个值转换为布尔值
+export const isFalse = (val: unknown): boolean => val === 0 ? false : !val; // !! 表示把一个值转换为布尔值
 // 用来处理空值的函数
 export const cleanObject = (obj: object) => {
   // 拷贝obj，不在原对象上进行修改。
@@ -38,7 +38,7 @@ export const useMount = (callback: () => void) => {
 // }
 
 // 防抖 
-export const useDebounce = (value: any, delay?: number) => {
+export const useDebounce = (value: unknown, delay?: number): any => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     // 每次 value 变化，设置一个定时器

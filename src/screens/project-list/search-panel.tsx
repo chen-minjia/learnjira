@@ -1,6 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  title: string;
+  orgnization: string;
+}
 interface SearchPanelProps {
   users: User[],
   param: {

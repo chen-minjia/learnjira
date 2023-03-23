@@ -16,7 +16,7 @@ export const ProjectListScreen = () => {
   })
   const [list, setList] = useState([]);
 
-  const debounceParam = useDebounce(param, 2000); // 防抖
+  const debounceParam = useDebounce(param, 500); // 防抖
 
   // 当param改变时(用户输入关键词，或选择下拉框时)，获取列表接口
   useEffect(() => {

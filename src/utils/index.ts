@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 
-export const isFalse = (val) => val === 0 ? false : !val; // !! 表示把一个值转换为布尔值
+export const isFalse = (val: any) => val === 0 ? false : !val; // !! 表示把一个值转换为布尔值
 // 用来处理空值的函数
-export const cleanObject = (obj) => {
+export const cleanObject = (obj: object) => {
   // 拷贝obj，不在原对象上进行修改。
-  const result = { ...obj }; // Object.assign({}, object)
+  const result: object = { ...obj }; // Object.assign({}, object)
   Object.keys(obj).forEach(key => {
+    // @ts-ignore
     const value = result[key];
     if (isFalse(value)) { // 排除 value 为 0 的情况被误删
       // if (!value && value !=0) { // 如果 value 为空、undefined、false ...
+      // @ts-ignore
       delete result[key];
     }
   })
@@ -16,7 +18,7 @@ export const cleanObject = (obj) => {
 }
 
 // 组件只在挂载时渲染
-export const useMount = (callback) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, [])
@@ -36,7 +38,7 @@ export const useMount = (callback) => {
 // }
 
 // 防抖 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     // 每次 value 变化，设置一个定时器
